@@ -1,0 +1,26 @@
+{
+  "name": "restaurantreservation",
+  "version": "1.0.0",
+  "description": "group project with Rhesa",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewsasmita/restaurantReservation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewsasmita/restaurantReservation/issues"
+  },
+  "homepage": "https://github.com/andrewsasmita/restaurantReservation#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.0.0"
+  }
+}
