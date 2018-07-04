@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Welcome to Restaurant Reservation !</h1><br>
+    <h2>Please login to your account...</h2>
+    <form action="/login" method="POST">
+        Email :<br>
+        <input type="text" name="email"><br>
+        Password :<br>
+        <input type="password"  name="password"><br><br>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+    <h3>Never use our services? Click register to start</h3> <br>
+    <input type="submit" onclick="location.href='/register'" value="Register" />
+</body>
+</html>

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     .then(reservations => {
       // res.json(reservations)
       res.render('reservations', {
-        reservations: reservations 
+        reservations : reservations 
       })
     })
     .catch(err => res.send(err))

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal Data</title>
+</head>
+<body>
+    <h1>Here is your personal data :)</h1>
+        <table style="width:50%" border="1">
+           
+            <tr>
+                <th>First Name</th>
+                <td><%= customer.firstName %></td> 
+            </tr>
+            <tr>
+                <th>Last Name</th> 
+                <td><%= customer.lastName %></td>  
+            </tr>
+            <tr>
+                <th>Email</th>        
+                <td><%= customer.email %></td>
+            </tr>
+            <tr>
+                <th>Role</th>              
+                <td><%= customer.role %></td>
+            </tr>
+        </table>
+        <br>
+        <input type="button" onclick="location.href='/customer/edit';" value="Edit Data" />
+</body>
+</html>

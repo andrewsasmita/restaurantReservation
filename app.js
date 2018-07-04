@@ -1,5 +1,5 @@
 const express = require('express')
-const app = express ()
+const app = express()
 const ejs = require ('ejs')
 
 const loginRoute = require('./routes/login')
@@ -14,8 +14,11 @@ app.use('/', loginRoute)
 app.use('/login', loginRoute)
 app.use('/register', registerRoute)
 
+
 // admin section
 // app.use('/dashboard', adminRoute)
+
+app.use('/customer', require('./routes/customer'))
 
 // user section
 app.use('/reservations', reservationRoute)
