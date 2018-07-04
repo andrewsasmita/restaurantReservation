@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Reservation</title>
+</head>
+<body>
+  <h3>Edit reservation</h3>
+  <table>
+    <tr>
+      <th>Restaurant name:</th>
+      <td><%= reservation.Restaurant.name %></td>
+    </tr>
+    <tr>
+      <th>Address:</th>
+      <td><%= reservation.Restaurant.address %></td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td><%= reservation.Restaurant.phone %></td>
+    </tr>
+  </table>
+  <form action="/reservations/<%= reservation.id %>/edit" method="post">
+    <label for="time">Time:</label>
+    <select name="time" id="time">
+    <% for (let i = 10; i <= 20; i += 2) {%>
+      <option value=<%= i %>><%= i %></option>
+    <% } %>
+    </select>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

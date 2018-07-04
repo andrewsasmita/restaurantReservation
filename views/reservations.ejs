@@ -7,7 +7,7 @@
   <title>Reservations</title>
 </head>
 <body>
-  <p>Welcome, <%= `${ reservations[0].Customer.firstName } ${ reservations[0].Customer.lastName }!`%></p>
+  <p>Welcome, !</p>
   <input type="button" value="Add reservation" onclick="location.href='/reservations/add'">
   <br><br>
   <table>
@@ -28,8 +28,8 @@
         <td><%= reservation.Restaurant.phone %></td>
         <td><%= reservation.time %></td>
         <td>
-          <a href="/reservation/<%= reservation.id %>/edit">Edit</a> |
-          <a href="/reservation/<%= reservation.id %>/delete">Delete</a> 
+          <a href="/reservations/<%= reservation.id %>/edit">Edit</a> |
+          <a href="/reservations/<%= reservation.id %>/delete">Delete</a> 
         </td>
       </tr>
       <% }) %>

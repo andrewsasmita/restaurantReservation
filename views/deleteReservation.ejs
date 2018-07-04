@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Reservation</title>
+</head>
+<body>
+  <h3>Delete reservation</h3>
+  <table>
+    <tr>
+      <th>Restaurant name:</th>
+      <td><%= reservation.Restaurant.name %></td>
+    </tr>
+    <tr>
+      <th>Address:</th>
+      <td><%= reservation.Restaurant.address %></td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td><%= reservation.Restaurant.phone %></td>
+    </tr>
+    <tr>
+      <th>Time:</th>
+      <td><%= reservation.time %></td>
+    </tr>
+  </table>
+  <form action="/reservations/<%= reservation.id %>/delete" method="post">
+    <input type="submit" value="Delete">
+  </form>
+</body>
+</html>
