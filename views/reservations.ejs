@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reservations</title>
+</head>
+<body>
+  <p>Welcome, <%= `${ reservations[0].Customer.firstName } ${ reservations[0].Customer.lastName }!`%></p>
+  <input type="button" value="Add reservation" onclick="location.href='/reservations/add'">
+  <br><br>
+  <table>
+    <thead>
+      <tr>
+        <th>Restaurant</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% reservations.forEach(reservation => { %>
+      <tr>
+        <td><%= reservation.Restaurant.name %></td>
+        <td><%= reservation.Restaurant.address %></td>
+        <td><%= reservation.Restaurant.phone %></td>
+        <td><%= reservation.time %></td>
+        <td>
+          <a href="/reservation/<%= reservation.id %>/edit">Edit</a> |
+          <a href="/reservation/<%= reservation.id %>/delete">Delete</a> 
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
