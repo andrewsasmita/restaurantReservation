@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const models = require('../models')
+let sendEmail = require('../helpers/sendEmail')
 
 //admin
 router.get('/', (req, res) => {
@@ -145,7 +146,21 @@ router.get('/restaurants/:id/view/:rsvpId/email', (req, res) => {
 
 router.post('/restaurants/:id/view/:rsvpId/email', (req, res) => {
   // email function here
-  res.send('test')
+  // res.send('test')
+  models.Reservation.findOne({
+    attributes: [
+      'id',
+      'CustomerId',
+      'RestaurantId',
+      'time'
+    ],
+    include: [models.Customer, models.Restaurant],
+    where: {id: req.params.rsvpId}
+  })
+  .then(reservation => {
+    sendEmail(reservation.Customer, res)
+  })
+  .catch(err => res.json(err))
 })
 
 module.exports = router
