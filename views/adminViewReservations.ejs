@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>View reservations</title>
+</head>
+<body>
+  <h3>View reservations</h3>
+  <table>
+    <tr>
+      <th>Restaurant name:</th>
+      <td><%= restaurant.name %></td>
+    </tr>
+    <tr>
+      <th>Address:</th>
+      <td><%= restaurant.address %></td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td><%= restaurant.phone %></td>
+    </tr>
+    <tr>
+      <th>Table amount:</th>
+      <td><%= restaurant.table %></td>
+    </tr>
+  </table>
+  <br>
+  <table border = 1>
+    <thead>
+      <tr>
+        <th>Customer name</th>
+        <th>Reservation time</th>
+        <th>Email</th>
+        <th>Notify</th>
+        <th>Delete Reservation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% reservations.forEach(reservation => { %>
+      <tr>
+        <td><%= reservation.Customer.getFullName() %></td>
+        <td><%= reservation.time %></td>
+        <td><%= reservation.Customer.email %></td>
+        <td>
+          <a href="/admin/restaurants/<%= restaurant.id %>/view/<%= reservation.id %>/email">
+            Send Email
+          </a>
+        </td>
+        <td>
+          <form action="/admin/restaurants/<%= restaurant.id %>/view/<%= reservation.id %>/delete" method="post">
+            <input type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <br>
+  <input type="button" value="Back" onclick="location.href='/admin'">
+</body>
+</html>

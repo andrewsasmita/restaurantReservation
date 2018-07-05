@@ -38,7 +38,7 @@ router.get('/add', (req, res) => {
 
 router.post('/add', (req, res) => {
   // res.json(req.body)
-  // let custId = 2;
+  let custId = req.session.customerId;
   models.Reservation.findAll({
     include: [models.Restaurant],
     where: { 

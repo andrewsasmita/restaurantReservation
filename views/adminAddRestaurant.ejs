@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<% if (err) { %>
+  <%= err.message %>
+<% } %>
+<body>
+  <h3>Add restaurant</h3>
+  <form action="/admin/restaurants/add" method="post">
+    <label for="name">Restaurant name</label><br>
+    <input type="text" name="name" id="name" value=<%= data ? data.name : '' %>><br>
+    <label for="address">Address</label><br>
+    <input type="text" name="address" id="address" value=<%= data ? data.address : '' %>><br>
+    <label for="address">Phone</label><br>
+    <input type="text" name="phone" id="phone" value=<%= data ? data.phone : '' %>><br>
+    <label for="name">Table amount</label><br>
+    <input type="text" name="table" id="table" value=<%= data ? data.table : '' %>><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

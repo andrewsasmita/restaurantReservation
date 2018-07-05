@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>Customer name:</th>
+      <td><%= reservation.Customer.getFullName() %></td>
+    </tr>
+    <tr>
+      <th>Restaurant:</th>
+      <td><%= reservation.Restaurant.name %></td>
+    </tr>
+    <tr>
+      <th>Reservation Time:</th>
+      <td><%= reservation.time %></td>
+    </tr>
+  </table>
+  <br> 
+  <form action="/admin/restaurants/<%= restaurant.id %>/view/<%= reservation.id %>/email" method="post">
+    <input type="submit" value="Send email">
+  </form>
+</body>
+</html>

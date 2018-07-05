@@ -44,5 +44,10 @@ module.exports = (sequelize, DataTypes) => {
     Customer.belongsToMany(models.Restaurant, {through: 'Reservation'})
 
   };
+
+  Customer.prototype.getFullName = function() {
+    return `${this.firstName} ${this.lastName}`
+  }
+
   return Customer;
 };

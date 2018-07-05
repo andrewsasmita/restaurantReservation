@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Restaurant</title>
+</head>
+<body>
+  <h3>Edit restaurant</h3>
+  <form action="/admin/restaurants/<%= restaurant.id%>/edit" method="post">
+    <label for="name">Restaurant name</label><br>
+    <input type="text" name="name" id="name" value='<%= restaurant.name %>'><br>
+    <label for="address">Address</label><br>
+    <input type="text" name="address" id="address" value='<%= restaurant.address %>'><br>
+    <label for="address">Phone</label><br>
+    <input type="text" name="phone" id="phone" value='<%= restaurant.phone %>'><br>
+    <label for="name">Table amount</label><br>
+    <input type="text" name="table" id="table" value='<%= restaurant.table %>'><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

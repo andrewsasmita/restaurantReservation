@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome Admin</title>
+</head>
+<body>
+  <h3>Welcome, Admin!</h3>
+  <p>Restaurant list</p>
+  <input type="button" value="Add Restaurant" onclick="location.href='/admin/restaurants/add'">
+  <br><br>
+  <table border = 1>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Restaurant Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Table capacity</th>
+        <th>Reservation list</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% restaurants.forEach(restaurant => { %>
+      <tr>
+        <td><%= restaurant.id %></td>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.address %></td>
+        <td><%= restaurant.phone %></td>
+        <td><%= restaurant.table %></td>
+        <td>
+          <a href="/admin/restaurants/<%= restaurant.id %>/view">View</a>
+        </td>
+        <td>
+          <a href="/admin/restaurants/<%= restaurant.id %>/edit">Edit</a> |
+          <a href="/admin/restaurants/<%= restaurant.id %>/delete">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
