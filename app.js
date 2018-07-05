@@ -7,6 +7,7 @@ const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/register')
 const reservationRoute = require('./routes/reservations')
 
+app.locals.hourConverter = require('./helpers/hourConverter')
 
 app.set('view engine', 'ejs')
 app.set('trust proxy', 1)

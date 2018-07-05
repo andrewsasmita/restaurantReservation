@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
       .then(restaurants => {
         res.render('reservations', {
         reservations : reservations, restaurants : restaurants,
-        table : null, notAvailable : null
+        table : null, reservedTables : null
         })
       })
     })
@@ -45,23 +45,32 @@ router.post('/', (req,res) => {
         let restaurantId = req.body.id
         models.Restaurant.findOne({where : {id : restaurantId}})
         .then(restaurant => {
-            models.Reservation.findAndCountAll({where : {
-            RestaurantId : restaurant.id,
-            time : 20
-            }})
-            .then(result => {
-              res.render('reservations', {
+          const reservationQueries = [];
+          for (let i = 10; i <= 20; i += 2) {
+              const query = models.Reservation.findAndCountAll({
+                                  where : {
+                                      RestaurantId : restaurantId,
+                                      time : i
+                                  },
+                              })
+              reservationQueries.push(query);
+          }
+          Promise.all(reservationQueries)
+              .then(result => {
+                //res.json(result[4].count)
+                res.render('reservations', {
                 reservations : reservations, 
                 restaurants : restaurants,
                 table : restaurant.table,
-                notAvailable : result.count
-              })
-            })
+                reservedTables : result
+                })
+            });
         })
       })
     })
   
 })
+
 
 router.get('/add', (req, res) => {
   models.Restaurant.findAll()
@@ -77,7 +86,7 @@ router.get('/add', (req, res) => {
 
 router.post('/add', (req, res) => {
   // res.json(req.body)
-  // let custId = 2;
+  let custId = req.session.customerId;
   models.Reservation.findAll({
     include: [models.Restaurant],
     where: { 

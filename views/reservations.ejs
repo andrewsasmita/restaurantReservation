@@ -47,8 +47,8 @@
       </select> <br>
       <input type="submit">
     
-      <% if(table !== null || notAvailable !== null) { %>
-        <p1>Tables at </p1><%=  %>
+      <% if(table !== null || reservedTables !== null) { %>
+        <p1>Tables at </p1>
         <table width="60%" border="3"> 
           <thead>
             <tr>
@@ -58,26 +58,13 @@
             </tr>
           </thead>
           <tbody>
+            <% for(let x=0; x<6; x++) { %>
             <tr>
-              <td>10 AM - 12 AM</td>
-            </tr>
-            <tr>
-                <td>12 AM - 2 PM</td>
-            </tr>
-            <tr>
-                <td>2 PM - 4 PM</td>
-            </tr>
-            <tr>
-                <td>4 PM - 6 PM</td>
-            </tr>
-            <tr>
-                <td>6 PM - 8 PM</td>
+                <td><%= hourConverter((2*x)+10) %></td>
                 <td><%= table %></td>
-                <td><%= table-notAvailable %></td>
+                <td><%= table-reservedTables[x].count %></td>
             </tr>
-            <tr>
-                <td>8 PM - 10 PM</td>
-            </tr>
+            <% } %>
           </tbody>
         </table>
       <% } %>
