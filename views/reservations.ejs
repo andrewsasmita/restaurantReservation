@@ -7,9 +7,11 @@
   <title>Reservations</title>
 </head>
 <body>
+  <input type="button" value="Edit Personal Data" onclick="location.href='/customer'">
+  <br>
   <input type="button" value="Add reservation" onclick="location.href='/reservations/add'">
   <br><br>
-  <table>
+  <table width="50%" border="2">
     <thead>
       <tr>
         <th>Restaurant</th>
@@ -34,5 +36,38 @@
       <% }) %>
     </tbody>
   </table>
+  <br>
+  <form action="/reservations" method="POST">
+    <fieldset>
+      Restaurant Reservations Checker:<br>
+      <select name="id">
+          <% restaurants.forEach(restaurant => { %>
+          <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
+          <% }) %>
+      </select> <br>
+      <input type="submit">
+    
+      <% if(table !== null || reservedTables !== null) { %>
+        <p1>Tables at </p1>
+        <table width="60%" border="3"> 
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Maximum Table</th>
+              <th>Available Table</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let x=0; x<6; x++) { %>
+            <tr>
+                <td><%= hourConverter((2*x)+10) %></td>
+                <td><%= table %></td>
+                <td><%= table-reservedTables[x].count %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      <% } %>
+
 </body>
 </html>

@@ -9,8 +9,7 @@ router.get('/', function (req, res) {
         where : {id : req.session.customerId}
     })
     .then(customer => {
-        //res.json(customer)
-        res.render('customer', {customer})
+        res.render('customer', {customer : customer})
     })
     .catch(error => {
         res.json(error)
@@ -18,11 +17,10 @@ router.get('/', function (req, res) {
 })
 
 router.get('/edit', function (req, res) {
-    res.render('customeredit')
+    res.render('customeredit', {err : null})
 })
 
 router.post('/edit', function (req, res) {
-    // let id = 1
     let edit = {}
     edit.firstName = req.body.firstName
     edit.lastName = req.body.lastName
@@ -35,7 +33,7 @@ router.post('/edit', function (req, res) {
         res.redirect('/customer')
     })
     .catch(error => {
-        res.json({err})
+        res.render('customeredit', {err : error})
     })
 })
 

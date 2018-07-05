@@ -17,12 +17,60 @@ router.get('/', (req, res) => {
   })
     .then(reservations => {
       // res.json(reservations)
-      res.render('reservations', {
-        reservations : reservations 
+      models.Restaurant.findAll()
+      .then(restaurants => {
+        res.render('reservations', {
+        reservations : reservations, restaurants : restaurants,
+        table : null, reservedTables : null
+        })
       })
     })
     .catch(err => res.send(err))
 })
+
+router.post('/', (req,res) => {
+  models.Reservation.findAll({
+    attributes: [
+      'id',
+      'CustomerId',
+      'RestaurantId',
+      'time'
+    ],
+    include: [models.Restaurant, models.Customer],
+    where: { CustomerId: req.session.customerId }
+  })
+    .then(reservations => {
+      models.Restaurant.findAll()
+      .then(restaurants => {
+        let restaurantId = req.body.id
+        models.Restaurant.findOne({where : {id : restaurantId}})
+        .then(restaurant => {
+          const reservationQueries = [];
+          for (let i = 10; i <= 20; i += 2) {
+              const query = models.Reservation.findAndCountAll({
+                                  where : {
+                                      RestaurantId : restaurantId,
+                                      time : i
+                                  },
+                              })
+              reservationQueries.push(query);
+          }
+          Promise.all(reservationQueries)
+              .then(result => {
+                //res.json(result[4].count)
+                res.render('reservations', {
+                reservations : reservations, 
+                restaurants : restaurants,
+                table : restaurant.table,
+                reservedTables : result
+                })
+            });
+        })
+      })
+    })
+  
+})
+
 
 router.get('/add', (req, res) => {
   models.Restaurant.findAll()

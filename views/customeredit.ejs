@@ -18,6 +18,11 @@
         Password :<br>
         <input type="text"  name="password"><br><br>
         <input type="submit" value="Submit">
+
+        <% if(err !== null) { %>
+            <p style="color : red"><%= err.message %></p>
+        <% } %>
+
       </form>
       <br>
      
