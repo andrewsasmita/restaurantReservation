@@ -17,11 +17,50 @@ router.get('/', (req, res) => {
   })
     .then(reservations => {
       // res.json(reservations)
-      res.render('reservations', {
-        reservations : reservations 
+      models.Restaurant.findAll()
+      .then(restaurants => {
+        res.render('reservations', {
+        reservations : reservations, restaurants : restaurants,
+        table : null, notAvailable : null
+        })
       })
     })
     .catch(err => res.send(err))
+})
+
+router.post('/', (req,res) => {
+  models.Reservation.findAll({
+    attributes: [
+      'id',
+      'CustomerId',
+      'RestaurantId',
+      'time'
+    ],
+    include: [models.Restaurant, models.Customer],
+    where: { CustomerId: req.session.customerId }
+  })
+    .then(reservations => {
+      models.Restaurant.findAll()
+      .then(restaurants => {
+        let restaurantId = req.body.id
+        models.Restaurant.findOne({where : {id : restaurantId}})
+        .then(restaurant => {
+            models.Reservation.findAndCountAll({where : {
+            RestaurantId : restaurant.id,
+            time : 20
+            }})
+            .then(result => {
+              res.render('reservations', {
+                reservations : reservations, 
+                restaurants : restaurants,
+                table : restaurant.table,
+                notAvailable : result.count
+              })
+            })
+        })
+      })
+    })
+  
 })
 
 router.get('/add', (req, res) => {
