@@ -1,12 +1,22 @@
 const express = require('express')
 const app = express()
 const ejs = require ('ejs')
+const session = require('express-session')
 
 const loginRoute = require('./routes/login')
 const registerRoute = require('./routes/register')
 const reservationRoute = require('./routes/reservations')
 
+
 app.set('view engine', 'ejs')
+app.set('trust proxy', 1)
+
+app.use(session({
+  secret: 'p240o8yth',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use(express.urlencoded({extended : false}))
 
 // login & register

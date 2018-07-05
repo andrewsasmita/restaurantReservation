@@ -13,7 +13,10 @@ router.post('/', (req, res) => {
     where: {email : email, password : password}
   })
   .then(customer => {
-    res.render('reservations', {customer : customer})
+    req.session.customerName = `${customer.firstName} ${customer.lastName}`
+    req.session.customerId = customer.id
+    // res.render('reservations', {customer : customer})
+    res.redirect('/reservations')
     //res.json(customer)
   })
   .catch(error => {

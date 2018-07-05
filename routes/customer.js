@@ -5,7 +5,9 @@ const models = require('../models')
 // '/customer'
 
 router.get('/', function (req, res) {
-    models.Customer.findOne({where : {id : 1}})
+    models.Customer.findOne({
+        where : {id : req.session.customerId}
+    })
     .then(customer => {
         //res.json(customer)
         res.render('customer', {customer})
@@ -20,13 +22,15 @@ router.get('/edit', function (req, res) {
 })
 
 router.post('/edit', function (req, res) {
-    let id = 1
+    // let id = 1
     let edit = {}
     edit.firstName = req.body.firstName
     edit.lastName = req.body.lastName
     edit.email = req.body.email
     edit.password = req.body.password
-    models.Customer.update(edit, {where : {id : id}})
+    models.Customer.update(edit, {
+        where : {id : req.session.customerId}
+    })
     .then(() => {
         res.redirect('/customer')
     })
