@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  res.json({ status: 'test' })
+  // res.json({ status: 'test' })
 })
 
 

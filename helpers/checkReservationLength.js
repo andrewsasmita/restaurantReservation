@@ -18,7 +18,7 @@ module.exports = function (reservations, custId, req, res) {
       }
     })
     .then(duplicate => {
-      res.json(duplicate)
+      // res.json(duplicate)
       if (duplicate) {
         models.Restaurant.findAll()
         .then(restaurants => {
@@ -28,17 +28,17 @@ module.exports = function (reservations, custId, req, res) {
           })
         })
       } 
-      // else {
-      //   models.Reservation.create({
-      //     CustomerId: custId,
-      //     RestaurantId: req.body.restaurantId,
-      //     time: req.body.time
-      //   })
-      //   .then((reservation) => {
-      //     // res.json(reservation)
-      //     res.redirect('/reservations')
-      //   })
-      // }
+      else {
+        models.Reservation.create({
+          CustomerId: custId,
+          RestaurantId: req.body.restaurantId,
+          time: req.body.time
+        })
+        .then((reservation) => {
+          // res.json(reservation)
+          res.redirect('/reservations')
+        })
+      }
     })
   }
 }

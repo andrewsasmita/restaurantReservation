@@ -52,7 +52,7 @@ router.post('/add', (req, res) => {
     if (reservations.length !== 0) {
       checkReservationLengthAndDuplicate(reservations, custId, req, res);
     } else {
-      checkReservationDuplicate(custId, req, res)
+      // checkReservationDuplicate(custId, req, res)
       models.Reservation.create({
         CustomerId: custId,
         RestaurantId: req.body.restaurantId,
@@ -61,7 +61,7 @@ router.post('/add', (req, res) => {
       .then((reservation) => {
         // res.json(reservation)
         res.redirect('/reservations')
-      })
+      })   
     }
   })
   .catch(err => res.json(err))
