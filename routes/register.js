@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const model = require('../models')
+const models = require('../models')
 
 router.get('/', (req, res) => {
   res.render('register')
@@ -12,14 +12,15 @@ router.post('/', (req, res) => {
   add.lastName = req.body.lastName
   add.email = req.body.email
   add.password = req.body.password
+  add.role = req.body.role
   models.Customer.create(add)
   .then(() => {
-    res.redirect('/login')
+   res.redirect('/login')
   })
   .catch(error => {
-    res.json({error})
+   res.json({error})
   })
-  //res.json({ status: 'test' })
+  // res.json( add )
 })
 
 

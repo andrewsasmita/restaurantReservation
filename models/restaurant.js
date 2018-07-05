@@ -1,10 +1,34 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Restaurant = sequelize.define('Restaurant', {
-    name: DataTypes.STRING,
+    name: {
+      type : DataTypes.STRING,
+      validate : {
+        notNull:  {
+          args : true,
+          msg : "Please input restaurant's name"
+        }
+      }
+    },
     table: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    phone: DataTypes.STRING
+    address: {
+      type : DataTypes.STRING,
+      validate : {
+        notNull:  {
+          args : true,
+          msg : "Please input restaurant's address"
+        }
+      }
+    },
+    phone: {
+      type : DataTypes.STRING,
+      validate : {
+        notNull:  {
+          args : true,
+          msg : "Please input restaurant's phone number"
+        }
+      }
+    },
   }, {});
   Restaurant.associate = function(models) {
     
