@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
       .then(restaurants => {
         res.render('reservations', {
         reservations : reservations, restaurants : restaurants,
-        table : null, reservedTables : null
+        table : null, reservedTables : null, customer: req.session.customer
         })
       })
     })
@@ -62,7 +62,8 @@ router.post('/', (req,res) => {
                 reservations : reservations, 
                 restaurants : restaurants,
                 table : restaurant.table,
-                reservedTables : result
+                reservedTables : result,
+                customer: req.session.customer
                 })
             });
         })

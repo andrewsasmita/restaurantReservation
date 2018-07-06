@@ -15,8 +15,11 @@
         Password :<br>
         <input type="password"  name="password"><br><br>
         <input type="submit" value="Submit">
-      </form>
-      <br>
+    </form>
+    <br>
+    <% if (err) { %>
+        <%= err.message %>
+    <% } %>
     <h3>Never use our services? Click register to start</h3> <br>
     <input type="submit" onclick="location.href='/register'" value="Register" />
 </body>
