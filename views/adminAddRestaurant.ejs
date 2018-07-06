@@ -10,6 +10,7 @@
   <%= err.message %>
 <% } %>
 <body>
+    <% include partials/nav.ejs %> <br>
   <h3>Add restaurant</h3>
   <form action="/admin/restaurants/add" method="post">
     <label for="name">Restaurant name</label><br>

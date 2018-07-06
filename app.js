@@ -37,6 +37,8 @@ app.use('/admin', isAuthorized, adminRoute)
 // user section
 app.use('/reservations', isAuthenticated, reservationRoute)
 app.use('/customer', isAuthenticated, require('./routes/customer'))
+app.use('/contact', require('./routes/contact'))
+
 
 app.listen(3000, () => {
   console.log('listening on port 3000')

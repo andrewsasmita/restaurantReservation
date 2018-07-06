@@ -3,7 +3,16 @@ module.exports = function(hour) {
         am: 'AM',
         pm: 'PM'
     }
-    let prefix
 
-    return `${hour} ${hour < 11 ? dict.am : dict.pm} - ${hour + 2} PM`
+    if(hour > 13 ) {
+        hour = hour - 12
+    }
+    let front
+    if(hour === 10 ) {
+        front = 'AM'
+    } else {
+        front ='PM'
+    }
+
+    return `${hour} ${front} - ${hour + 2} PM`
 }
