@@ -25,6 +25,17 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty:  {
           args : true,
           msg : "Please input your email"
+        },
+        isUnique(value, next) {
+          Customer.find({
+            where: { email : value }
+          }).then((user) => {
+            if (user && +this.id !== user.id) {
+              next('email must be unique')
+            } else {
+              next()
+            }
+          })
         }
       }
     },

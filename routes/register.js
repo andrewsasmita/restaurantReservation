@@ -2,7 +2,7 @@ const router = require('express').Router()
 const models = require('../models')
 
 router.get('/', (req, res) => {
-  res.render('register')
+  res.render('register', {err : null})
   //res.json({ status: 'register' })
 })
 
@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
    res.redirect('/login')
   })
   .catch(error => {
-   res.json({error})
+   res.render('register', {err : error})
   })
   // res.json( add )
 })
